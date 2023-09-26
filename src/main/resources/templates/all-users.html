@@ -11,10 +11,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Admin panel</title>
 </head>
 <body>
-<h2>Admin panel</h2>
+
+
+    <nav class="navbar bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <p class="text-white bg-dark">admin@mail.ru with role: ADMIN</p>
+            <form style="display:inline" th:action="@{/logout}" method="POST">
+                <input type="submit" value="Logout"/>
+            </form>
+        </div>
+    </nav>
+<br>
 
 
 <div class="row">
@@ -28,8 +38,9 @@
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
-
+                <h2>Admin panel</h2>
                 <ul class="nav nav-tabs " id="myTab" role="tablist">
+
                     <li class="nav-item">
                         <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users table</a>
                     </li>
@@ -41,7 +52,7 @@
 
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                        <div class="w-auto p-3 border bg-light clearfix">All users</div>
+                        <div class="w-auto p-3 border bg-light clearfix ">All users</div>
 
                         <table class="table table-bordered table-striped">
 
@@ -66,13 +77,13 @@
 
                                 <td>
                                     <form action="#" th:action="@{admin/{id}/edit(id=${user.getId()})}" th:method="get">
-                                        <button type="submit" class="btn"> Edit</button>
+                                        <button type="submit" class="btn btn-info"> Edit</button>
                                     </form>
                                 </td>
 
                                 <td>
                                     <form action="#" th:action="@{admin/{id}/delete(id=${user.getId()})}" th:method="delete">
-                                        <button type="submit" class="btn"> Delete</button>
+                                        <button type="submit" class="btn btn-danger"> Delete</button>
                                     </form>
                                 </td>
                             </tr>
