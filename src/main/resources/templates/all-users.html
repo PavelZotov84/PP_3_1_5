@@ -90,40 +90,96 @@
 
                     </div>
 
-                        <div class="tab-pane fade" id="new-user" role="tabpanel" aria-labelledby="new-user-tab">
-                            <div style="font-weight:bold" class="w-auto p-3 border bg-light clearfix ">Add new user</div>
-                            <div class="row"></div>
-                            <br>
+                    <div class="tab-pane fade" id="new-user" aria-labelledby="new-user-tab" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add new user</h4>
+                            </div>
+                            <div class="col-md bg-white border">
+                                <form align="center" class="offset-md-4 col-md-3 mt-4 mb-4" th:method="POST" th:action="@{/admin}" th:object="${newuser}">
+                                    <label class="form-label" for="username">Username:</label>
+                                    <input class="form-control" type="text" name="username" id="username" />
 
-                            <form th:method="POST" th:action="@{/admin}" th:object="${newuser}">
-                                <div>
 
-                                    <label for="username">Email</label>
-                                    <input type="text" th:field="*{username}" id="username"/>
-                                    <br/>
-                                    <br>
-                                    <label for="password">Password </label>
-                                    <input type="text" th:field="*{password}" id="password"/>
-                                    <br/>
-                                    <br>
-                                    <p>
-                                        <label>Roles:
-                                            <input type="checkbox" name="roles"
-                                                   th:each="role : ${allRoles}"
-                                                   th:text="${role.getNameTable()}"
-                                                   th:value="${role.id}"
-                                                   th:field="*{roles}"
-                                            />
-                                        </label>
-                                    </p>
+                                    <label class="form-label" for="password">Password:</label>
+                                    <input class="form-control" type="password" name="password" id="password" required/>
 
-                                    <input type="submit" value="Create!"/>
-                                </div>
-                            </form>
+
+                                    <label class="form-label" for="name">Name:</label>
+                                    <input class="form-control" type="text" name="name" id="name" required/>
+
+                                    <label class="form-label" for="lastname">Last name:</label>
+                                    <input class="form-control" type="text" name="lastName" id="lastname" required/>
+
+
+                                    <label for="role1"><b>Role</b></label>
+                                    <select multiple class="form-control form-control-sm"
+                                            id="role1" name="roles" size="2" required>
+                                        <option th:text="ROLE_ADMIN" th:value="ROLE_ADMIN"/>
+                                        <option th:text="ROLE_USER" th:value="ROLE_USER"/>
+                                    </select>
+                                    <!--                                <label class="form-label" for="roles">Roles:</label>-->
+                                    <!--                                <select class="form-select" id="roles" name="roles" multiple>-->
+                                    <!--                                    <option th:each="role : ${roles}" th:value="${role.name}"-->
+                                    <!--                                            th:text="${role.toString()}"></option>-->
+                                    <!--                                </select>-->
+                                    <input class="btn btn-success" type="submit" value="Add new user"/>
+                                </form>
+                            </div>
                         </div>
                     </div>
-
+                </div>
             </div>
+        </div>
+    </div>
+
+
+    <!--                        <div class="tab-pane fade" id="new-user" role="tabpanel" aria-labelledby="new-user-tab">-->
+<!--                            <div style="font-weight:bold" class="w-auto p-3 border bg-light clearfix ">Add new user</div>-->
+<!--                            <div class="row"></div>-->
+<!--                            <div class="col-md bg-white border">-->
+
+<!--                                -->
+<!--&lt;!&ndash;                            <form style="font-weight:bold" th:method="POST" th:action="@{/admin}" th:object="${newuser}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="col-6" align="center" >&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="firstName" class="form-label">First Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input type="text" class="form-control" th:field="*{firstName}" id="firstName">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="lastName" class="form-label">Last Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input type="text" class="form-control" th:field="*{lastName}" id="lastName">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="age" class="form-label">Age</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input type="text" class="form-control" th:field="*{age}" id="age">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="username" class="form-label">Email</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input type="text" class="form-control" th:field="*{username}" id="username">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="password" class="form-label">Password</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <input type="text" class="form-control" th:field="*{password}" id="password">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label>Roles:&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <input type="checkbox" name="roles"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   th:each="role : ${allRoles}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   th:text="${role.getNameTable()}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   th:value="${role.id}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   th:field="*{roles}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </p>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                    <input type="submit" value="Create!"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </form>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--            </div>-->
 
             <div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <h2>User information-page</h2>
