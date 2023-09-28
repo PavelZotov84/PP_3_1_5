@@ -33,21 +33,22 @@ public class AdminController {
         model.addAttribute("user", userService.allUsers());
         model.addAttribute("person",person);
         model.addAttribute("allRoles",roles);
+        model.addAttribute("newuser",new User());
         return "all-users";
     }
 
 
-    @GetMapping("/new")
-    public ModelAndView newUser() {
-        ModelAndView mav = new ModelAndView("new");
-        mav.addObject("person", new User());
-        List<Role> roles = (List<Role>) roleRepository.findAll();
-        mav.addObject("allRoles", roles);
-        return mav;
-    }
+//    @GetMapping("/new")
+//    public ModelAndView newUser() {
+//        ModelAndView mav = new ModelAndView("new");
+//        mav.addObject("newUser", new User());
+//        List<Role> roles = (List<Role>) roleRepository.findAll();
+//        mav.addObject("allRoles", roles);
+//        return mav;
+//    }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") User user) {
+    public String create(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
