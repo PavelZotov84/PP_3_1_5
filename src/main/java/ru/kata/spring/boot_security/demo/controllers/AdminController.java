@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +24,15 @@ public class AdminController {
     private RoleRepository roleRepository;
 
 
+
+
     @GetMapping()
-    public String PrintAllUsers(Model model) {
+    public String PrintAllUsers(Authentication authentication,Model model) {
+        UserDetails person = userService.loadUserByUsername(authentication.getName());
+        List<Role> roles = (List<Role>) roleRepository.findAll();
         model.addAttribute("user", userService.allUsers());
+        model.addAttribute("person",person);
+        model.addAttribute("allRoles",roles);
         return "all-users";
     }
 
