@@ -55,7 +55,7 @@ public class AdminController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("person", userService.findUserById(id));
+        model.addAttribute("edit", userService.findUserById(id));
         model.addAttribute("allRoles", roleRepository.findAll());
         return "edit";
     }
