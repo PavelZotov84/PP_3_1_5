@@ -16,12 +16,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
 
     @GetMapping()
     public String PrintUser(Authentication authentication,Model model) {
       UserDetails user = userService.loadUserByUsername(authentication.getName());
-        model.addAttribute("user",user);
-        return "User";
+        model.addAttribute("person",user);
+        return "user";
     }
 }
