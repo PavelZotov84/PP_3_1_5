@@ -38,17 +38,20 @@ public class UserService implements UserDetailsService {
         if (userFromDB != null) {
             return false;
         }
-        user.setRoles(user.getRoles());
-        user.setPassword(user.getPassword());
         userRepository.save(user);
         return true;
     }
 
     public void updateUser(User user) {
-        user.setUsername(user.getUsername());
-        user.setRoles(user.getRoles());
-        user.setPassword(user.getPassword());
         userRepository.save(user);
+    }
+
+    public Optional<User> loadUserFindByID(long id){
+        return userRepository.findById(id);
+    }
+
+    public User searchById(long id){
+        return userRepository.getById(id);
     }
 
     public boolean deleteUser(Long userId) {
