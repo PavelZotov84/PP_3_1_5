@@ -16,6 +16,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
     private final UserService userService;
+
     @Autowired
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserService userService) {
         this.successUserHandler = successUserHandler;
@@ -27,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 

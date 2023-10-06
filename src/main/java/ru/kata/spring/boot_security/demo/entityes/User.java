@@ -39,6 +39,14 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    public User(String username, String password, int age, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Override
     public String getUsername() {
         return username;
@@ -64,9 +72,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -95,6 +101,10 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getAge() {

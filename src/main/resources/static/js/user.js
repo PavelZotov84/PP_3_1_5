@@ -9,15 +9,17 @@ fetch("/api/users/current").then(res => res.json())
 
 function showOneUser(user) {
     let temp = "";
+    let role = user.roles.map(role => role.name.substring(5));
     temp += "<tr>"
     temp += "<td>" + user.id + "</td>"
     temp += "<td>" + user.firstName + "</td>"
     temp += "<td>" + user.lastName + "</td>"
     temp += "<td>" + user.age + "</td>"
     temp += "<td>" + user.username + "</td>"
-    temp += "<td>" + user.roles.map(role => role.name.substring(5)) + "</td>"
+    temp += "<td>" + role + "</td>"
     temp += "</tr>"
     document.getElementById("oneUserBody").innerHTML = temp;
+    document.getElementById("auth_role").innerHTML = role;
 }
 
 

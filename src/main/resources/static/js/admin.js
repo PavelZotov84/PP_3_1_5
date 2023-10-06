@@ -43,8 +43,8 @@ function showUsers(table) {
         temp += "<td>" + user.age + "</td>"
         temp += "<td>" + user.username + "</td>"
         temp += "<td>" + user.roles.map(role => role.name.substring(5)) + "</td>"
-        temp += "<td>" + `<a onclick='showEditModal(${user.id})' class="btn btn-outline-info" id="edit">Edit</a>` + "</td>"
-        temp += "<td>" + `<a onclick='showDeleteModal(${user.id})' class="btn btn-outline-danger" id="delete">Delete</a>` + "</td>"
+        temp += "<td>" + `<a onclick='showEditModal(${user.id})' class="btn btn-info" id="edit">Edit</a>` + "</td>"
+        temp += "<td>" + `<a onclick='showDeleteModal(${user.id})' class="btn btn-danger" id="delete">Delete</a>` + "</td>"
         temp += "</tr>"
         document.getElementById("allUsersBody").innerHTML = temp;
     })
@@ -65,15 +65,17 @@ function getRoles(list) {
 
 function showOneUser(user) {
     let temp = "";
+    let val = user.roles.map(role => role.name.substring(5));
     temp += "<tr>"
     temp += "<td>" + user.id + "</td>"
     temp += "<td>" + user.firstName + "</td>"
     temp += "<td>" + user.lastName + "</td>"
     temp += "<td>" + user.age + "</td>"
     temp += "<td>" + user.username + "</td>"
-    temp += "<td>" + user.roles.map(role => role.name.substring(5)) + "</td>"
+    temp += "<td>" + val + "</td>"
     temp += "</tr>"
     document.getElementById("oneUserBody").innerHTML = temp;
+    document.getElementById("current_user").innerHTML = val;
 }
 
 function rolesUser(event) {
@@ -147,7 +149,7 @@ function showDeleteModal(id) {
             document.getElementById('firstNameDel').setAttribute('value', deleteUser.firstName);
             document.getElementById('lastNameDel').setAttribute('value', deleteUser.lastName);
             document.getElementById('ageDel').setAttribute('value', deleteUser.age);
-            document.getElementById('emailDel').setAttribute('value', deleteUser.email);
+            document.getElementById('emailDel').setAttribute('value', deleteUser.username);
             document.getElementById('passwordDel').setAttribute('value', deleteUser.password);
             if (getRoles(deleteUser.roles).includes("USER") && getRoles(deleteUser.roles).includes("ADMIN")) {
                 document.getElementById('rolesDel1').setAttribute('selected', 'true');
@@ -193,7 +195,7 @@ function showEditModal(id) {
             document.getElementById('firstNameRed').setAttribute('value', editUser.firstName);
             document.getElementById('lastNameRed').setAttribute('value', editUser.lastName);
             document.getElementById('ageRed').setAttribute('value', editUser.age);
-            document.getElementById('emailRed').setAttribute('value', editUser.email);
+            document.getElementById('emailRed').setAttribute('value', editUser.username);
             document.getElementById('passwordRed').setAttribute('value', editUser.password);
             if ((editUser.roles.map(role => role.id)) == 1 && ((editUser.roles.map(role => role.id)) == 2)) {
                 document.getElementById('rolesRed1').setAttribute('selected', 'true');
